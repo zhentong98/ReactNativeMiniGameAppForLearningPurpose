@@ -1,9 +1,12 @@
-import {useState, useEffect} from "react";
-import {StyleSheet, Text, View, Alert} from "react-native";
+import {useEffect, useState} from "react";
+import {Alert, StyleSheet, View} from "react-native";
+import {Ionicons} from "@expo/vector-icons";
 
 import NumberContainer from "../components/game/NumberContainer";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import Title from "../components/ui/Title";
+import Card from "../components/ui/Card";
+import InstructionText from "../components/ui/InstructionText";
 
 function generateRandomBetween(min, max, exclude) {
     const rndNum = Math.floor(Math.random() * (max - min)) + min;
@@ -52,13 +55,21 @@ function GameScreen({userNumber, onGameOver}) {
             <NumberContainer>
                 {currentGuess}
             </NumberContainer>
-            <View>
-                <Text>Higher or lower?</Text>
-                <View>
-                    <PrimaryButton onPress={nextGuessHandler.bind(this, 'lower')}>+</PrimaryButton>
-                    <PrimaryButton onPress={nextGuessHandler.bind(this, 'greater')}>-</PrimaryButton>
+            <Card>
+                <InstructionText style={styles.instructionText}>Higher or lower?</InstructionText>
+                <View style={styles.buttonsContainer}>
+                    <View style={styles.buttonContainer}>
+                        <PrimaryButton onPress={nextGuessHandler.bind(this, 'lower')}>
+                            <Ionicons name="md-add" size={24} color={"white"}/>
+                        </PrimaryButton>
+                    </View>
+                    <View style={styles.buttonContainer}>
+                        <PrimaryButton onPress={nextGuessHandler.bind(this, 'greater')}>
+                            <Ionicons name="md-remove" size={24} color={"white"}/>
+                        </PrimaryButton>
+                    </View>
                 </View>
-            </View>
+            </Card>
             <View>
                 {/*Log Rounds*/}
             </View>
@@ -73,13 +84,13 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 24
     },
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        color: '#ddb52f',
-        textAlign: 'center',
-        borderWidth: 2,
-        borderColor: '#ddb52f',
-        padding: 12
+    instructionText: {
+        marginBottom: 12
+    },
+    buttonsContainer: {
+        flexDirection: 'row',
+    },
+    buttonContainer: {
+        flex: 1
     }
 });
