@@ -1,8 +1,10 @@
 import {useState} from "react";
-import {StyleSheet, ImageBackground, SafeAreaView} from 'react-native';
+import {ImageBackground, SafeAreaView, StyleSheet} from 'react-native';
 import {LinearGradient} from "expo-linear-gradient"
+import * as Font from 'expo-font';
 import {useFonts} from 'expo-font';
-import AppLoading from "expo-app-loading";
+import * as SplashScreen from "expo-splash-screen";
+import {Entypo} from "@expo/vector-icons";
 
 import StartGameScreen from "./screens/StartGameScreen";
 import GameScreen from "./screens/GameScreen";
@@ -21,7 +23,19 @@ export default function App() {
     })
 
     if (!fontsLoaded) {
-        return <AppLoading/>;
+        async function prepare() {
+            try {
+                await Font.loadAsync(Entypo.font);
+                await new Promise(resolve => setTimeout(resolve, 2000));
+
+            } catch (e) {
+                console.log(e);
+            } finally {
+                await SplashScreen.hideAsync();
+            }
+        }
+
+        return;
     }
 
     function pickedNumberHandler(pickedNumber) {
