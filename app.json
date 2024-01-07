@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "RNCourse",
-    "slug": "RNCourse",
+    "name": "React Native Mini Game Demo",
+    "slug": "ReactNativeMiniGameDemo",
     "version": "1.0.0",
     "orientation": "default",
     "icon": "./assets/icon.png",
@@ -17,7 +17,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.chentong.react-native-mini-game-demo"
     },
     "android": {
       "adaptiveIcon": {
@@ -27,6 +28,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "d16e7135-24c6-4e2c-bba3-a5d4a4a773e1"
+      }
     }
   }
 }
