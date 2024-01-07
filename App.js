@@ -5,6 +5,7 @@ import * as Font from 'expo-font';
 import {useFonts} from 'expo-font';
 import * as SplashScreen from "expo-splash-screen";
 import {Entypo} from "@expo/vector-icons";
+import {StatusBar} from "expo-status-bar"
 
 import StartGameScreen from "./screens/StartGameScreen";
 import GameScreen from "./screens/GameScreen";
@@ -67,18 +68,21 @@ export default function App() {
     }
 
     return (
-        <LinearGradient style={styles.rootScreen} colors={[Colors.primary700, Colors.accent500]}>
-            <ImageBackground
-                style={styles.rootScreen}
-                source={require("./assets/images/background.png")}
-                resizeMode={"cover"}
-                imageStyle={styles.backgroundImage}
-            >
-                <SafeAreaView style={styles.rootScreen}>
-                    {screen}
-                </SafeAreaView>
-            </ImageBackground>
-        </LinearGradient>
+        <>
+            <StatusBar style={"light"} />
+            <LinearGradient style={styles.rootScreen} colors={[Colors.primary700, Colors.accent500]}>
+                <ImageBackground
+                    style={styles.rootScreen}
+                    source={require("./assets/images/background.png")}
+                    resizeMode={"cover"}
+                    imageStyle={styles.backgroundImage}
+                >
+                    <SafeAreaView style={styles.rootScreen}>
+                        {screen}
+                    </SafeAreaView>
+                </ImageBackground>
+            </LinearGradient>
+        </>
     );
 }
 
